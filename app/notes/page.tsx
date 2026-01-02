@@ -1,4 +1,3 @@
-import css from "./page.module.css";
 import {
   HydrationBoundary,
   QueryClient,

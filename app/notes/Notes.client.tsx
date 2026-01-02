@@ -15,7 +15,7 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
-import css from "./Notes.module.css";
+import css from "./NotesPage.module.css";
 
 const PER_PAGE = 12;
 
@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function NotesClient({ initialPage }: Props) {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initialPage);
   const [search, setSearch] = useState("");
   const [debouncedSearch] = useDebounce(search, 500);
   const [isModalOpen, setIsModalOpen] = useState(false);
