@@ -46,3 +46,5 @@ export async function fetchNoteById(id: string): Promise<Note> {
   const { data } = await api.get<Note>(`/notes/${id}`);
   return data;
 }
+
+console.log("TOKEN:", process.env.NEXT_PUBLIC_NOTEHUB_TOKEN);
