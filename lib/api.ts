@@ -1,17 +1,19 @@
 import axios from "axios";
 import type { FetchNotesParams, FetchNotesResponse, Note } from "../types/note";
 
-const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-if (!token) {
-  throw new Error("NEXT_PUBLIC_NOTEHUB_TOKEN is not set");
-}
-
-export const api = axios.create({
+const api = axios.create({
   baseURL: "https://notehub-public.goit.study/api",
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
+});
+
+api.interceptors.request.use((config) => {
+  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN as string | undefined;
+
+  if (token) {
+    config.headers = config.headers ?? {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 export const fetchNotes = async (
